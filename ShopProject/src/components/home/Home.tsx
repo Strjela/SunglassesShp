@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../../redux/store";
 import { fetchProducts } from "../../redux/productSlice";
 import { useEffect } from "react";
+import { ProductData } from "../../types";
 
 export default function Home() {
   const dispatch: AppDispatch = useDispatch();
@@ -36,7 +37,9 @@ export default function Home() {
       </video>
       <div>
         {allProducts ? (
-          <Products products={allProducts} />
+          <Products
+            products={allProducts ? (allProducts as ProductData[]) : []}
+          />
         ) : (
           <li>Loading...</li>
         )}
